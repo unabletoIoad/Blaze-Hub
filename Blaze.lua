@@ -1,4 +1,4 @@
-local Flux = {RainbowColorValue = 0, HueSelectionPosition = 0}
+local Blaze = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local PresetColor = Color3.fromRGB(66, 134, 255)
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -7,23 +7,23 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
 
-local FluxLib = Instance.new("ScreenGui")
-FluxLib.Name = "FluxLib"
-FluxLib.Parent = game.CoreGui
-FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local BlazeLib = Instance.new("ScreenGui")
+BlazeLib.Name = "BlazeLib"
+BlazeLib.Parent = game.CoreGui
+BlazeLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 coroutine.wrap(
 	function()
 		while wait() do
-			Flux.RainbowColorValue = Flux.RainbowColorValue + 1 / 255
-			Flux.HueSelectionPosition = Flux.HueSelectionPosition + 1
+			Blaze.RainbowColorValue = Blaze.RainbowColorValue + 1 / 255
+			Blaze.HueSelectionPosition = Blaze.HueSelectionPosition + 1
 
-			if Flux.RainbowColorValue >= 1 then
-				Flux.RainbowColorValue = 0
+			if Blaze.RainbowColorValue >= 1 then
+				Blaze.RainbowColorValue = 0
 			end
 
-			if Flux.HueSelectionPosition == 80 then
-				Flux.HueSelectionPosition = 0
+			if Blaze.HueSelectionPosition == 80 then
+				Blaze.HueSelectionPosition = 0
 			end
 		end
 	end
@@ -87,7 +87,7 @@ end
 
 
 
-function Flux:Window(text, bottom,mainclr,toclose)
+function Blaze:Window(text, bottom,mainclr,toclose)
 	CloseBind = toclose or Enum.KeyCode.RightControl
 	PresetColor = mainclr or Color3.fromRGB(66, 134, 255)
 	local fs = false
@@ -104,7 +104,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	local ContainerFolder = Instance.new("Folder")
 
 	MainFrame.Name = "MainFrame"
-	MainFrame.Parent = FluxLib
+	MainFrame.Parent = BlazeLib
 	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	MainFrame.BackgroundColor3 = Color3.fromRGB(50, 53, 59)
 	MainFrame.ClipsDescendants = true
@@ -196,17 +196,17 @@ function Flux:Window(text, bottom,mainclr,toclose)
 					MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
 					uitoggled = true
 					wait(.5)
-					FluxLib.Enabled = false
+					BlazeLib.Enabled = false
 				else
 					MainFrame:TweenSize(UDim2.new(0, 706, 0, 484), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
-					FluxLib.Enabled = true
+					BlazeLib.Enabled = true
 					uitoggled = false
 				end
 			end
 		end
 	)
 	
-	function Flux:Notification(desc,buttontitle)
+	function Blaze:Notification(desc,buttontitle)
 		for i, v in next, MainFrame:GetChildren() do
 			if v.Name == "NotificationBase" then
 				v:Destroy()
@@ -2216,11 +2216,11 @@ function Flux:Window(text, bottom,mainclr,toclose)
 						OldHueSelectionPosition = HueSelection.Position
 
 						while RainbowColorPicker do
-							BoxColor.BackgroundColor3 = Color3.fromHSV(Flux.RainbowColorValue, 1, 1)
-							Color.BackgroundColor3 = Color3.fromHSV(Flux.RainbowColorValue, 1, 1)
+							BoxColor.BackgroundColor3 = Color3.fromHSV(Blaze.RainbowColorValue, 1, 1)
+							Color.BackgroundColor3 = Color3.fromHSV(Blaze.RainbowColorValue, 1, 1)
 
 							ColorSelection.Position = UDim2.new(1, 0, 0, 0)
-							HueSelection.Position = UDim2.new(0.48, 0, 0, Flux.HueSelectionPosition)
+							HueSelection.Position = UDim2.new(0.48, 0, 0, Blaze.HueSelectionPosition)
 
 							pcall(callback, BoxColor.BackgroundColor3)
 							wait()
@@ -2746,4 +2746,4 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	end
 	return Tabs
 end
-return Flux
+return Blaze
