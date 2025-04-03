@@ -5,3 +5,6 @@ The library can be used by anyone and is fully open-source for everyone!
 
 Blaze Hub is made for:
 🫧 - Bubble Gum Simulator Infinity
+
+Import Library:
+```local Blaze = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()```
